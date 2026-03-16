@@ -201,7 +201,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-zinc-100 p-4 font-inter">
+    <div className="min-h-screen md:min-h-[90vh] flex items-center justify-center bg-zinc-100 md:p-4 p-0 font-inter overflow-hidden">
       {showConfigPopup && (
         <div className="fixed inset-0 flex items-center justify-center z-40 bg-black/50">
           <div className="bg-white rounded-xl shadow-lg max-w-md w-full p-6">
@@ -298,7 +298,7 @@ export default function App() {
           {/* MAIN CHAT AREA */}
           <div className="flex-1 flex flex-col relative bg-zinc-50 min-w-0">
             {/* CHAT HEADER */}
-            <div className="flex items-center gap-2 md:gap-4 px-3 md:px-6 py-3 bg-white border-b border-gray-100 shadow-sm z-10">
+            <div className="flex items-center gap-2 md:gap-4 px-3 md:px-6 h-14 md:h-16 bg-white border-b border-gray-100 shadow-sm z-10 shrink-0">
               <button 
                 onClick={() => setShowRoomsSidebar(true)}
                 className="lg:hidden p-1.5 hover:bg-zinc-100 rounded-lg text-gray-600 transition-colors"
@@ -309,7 +309,7 @@ export default function App() {
                 </svg>
               </button>
 
-              <div className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-gradient-to-br from-green-500 to-[#075E54] flex items-center justify-center text-white font-bold shadow-md shrink-0">
+              <div className="h-9 w-9 md:h-10 md:w-10 rounded-full bg-gradient-to-br from-green-500 to-[#075E54] flex items-center justify-center text-white font-bold shadow-md shrink-0">
                 {roomName.charAt(0).toUpperCase()}
               </div>
               
@@ -317,8 +317,8 @@ export default function App() {
                 <div className="text-sm md:text-base font-bold text-gray-800 truncate leading-tight">
                   {roomName}
                 </div>
-                <div className="flex items-center gap-1.5 overflow-hidden mt-0.5">
-                  <span className="text-[9px] md:text-[10px] py-0.5 px-1.5 bg-zinc-100 text-zinc-500 rounded-md font-mono shrink-0">
+                <div className="flex items-center gap-1 overflow-hidden mt-0.5">
+                  <span className="text-[8px] md:text-[10px] py-0.5 px-1 bg-zinc-100 text-zinc-500 rounded font-mono shrink-0">
                     #{roomId.slice(0, 6)}
                   </span>
                   {typers.length > 0 && (
@@ -329,11 +329,11 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-1.5 md:gap-3 px-1.5 md:px-3 py-1 bg-zinc-50 rounded-full border border-zinc-100">
+              <div className="flex items-center gap-1 md:gap-3 px-1.5 md:px-3 py-1 bg-zinc-100 sm:bg-zinc-50 rounded-full border border-zinc-200 sm:border-zinc-100">
                 <div className="hidden sm:block text-xs font-medium text-gray-600 truncate max-w-[80px]">
                    {userName}
                 </div>
-                <div className="h-6 w-6 rounded-full bg-green-100 text-[#075E54] flex items-center justify-center text-[10px] font-bold shrink-0 border border-white">
+                <div className="h-6 w-6 md:h-7 md:w-7 rounded-full bg-green-100 text-[#075E54] flex items-center justify-center text-[10px] font-bold shrink-0 border border-white">
                   {userName.charAt(0).toUpperCase()}
                 </div>
               </div>
@@ -343,7 +343,7 @@ export default function App() {
                 className="xl:hidden p-1.5 hover:bg-zinc-100 rounded-lg text-gray-600 transition-colors"
                 aria-label="Toggle Members Sidebar"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               </button>
