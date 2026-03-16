@@ -15,7 +15,7 @@ export default function App() {
   const [inputRoomId, setInputRoomId] = useState('');
   const [typers, setTypers] = useState([]);
   const [members, setMembers] = useState([]); // { phone, isOnline }
-  const [userRooms, setUserRooms] = useState([]); 
+  const [userRooms, setUserRooms] = useState([]);
 
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState('');
@@ -115,8 +115,8 @@ export default function App() {
     const rName = inputRoomId.trim();
     if (!name || !phone || !rName) return;
     try {
-      const res = await axios.post(`${API_BASE}/rooms`, { 
-        name: rName, 
+      const res = await axios.post(`${API_BASE}/rooms`, {
+        name: rName,
         phone,
         userName: name
       });
@@ -137,8 +137,8 @@ export default function App() {
     const rId = inputRoomId.trim();
     if (!name || !phone || !rId) return;
     try {
-      const res = await axios.post(`${API_BASE}/rooms/join`, { 
-        roomId: rId, 
+      const res = await axios.post(`${API_BASE}/rooms/join`, {
+        roomId: rId,
         phone,
         userName: name
       });
@@ -201,7 +201,7 @@ export default function App() {
   }
 
   return (
-    <div className="fixed md:static inset-0 h-[100dvh] md:h-auto md:min-h-screen flex items-center justify-center bg-zinc-100 md:p-4 p-0 font-inter overflow-hidden">
+    <div className="h-[100dvh] md:min-h-screen flex items-center justify-center bg-zinc-100 md:p-4 p-0 font-inter overflow-hidden">
       {showConfigPopup && (
         <div className="fixed inset-0 flex items-center justify-center z-40 bg-black/50">
           <div className="bg-white rounded-xl shadow-lg max-w-md w-full p-6">
@@ -247,7 +247,7 @@ export default function App() {
 
       {/* CHAT WINDOW */}
       {!showConfigPopup && (
-        <div className="w-full max-w-6xl h-full md:h-[90vh] bg-white rounded-none md:rounded-2xl shadow-2xl flex flex-col md:flex-row overflow-hidden border-0 md:border md:border-zinc-200">
+        <div className="w-full max-w-6xl h-full md:h-[90vh] bg-white rounded-none md:rounded-2xl shadow-2xl flex overflow-hidden border border-zinc-200">
           {/* ROOMS SIDEBAR */}
           <div className={`${showRoomsSidebar ? 'flex' : 'hidden'} lg:flex absolute lg:static inset-0 z-30 w-full lg:w-64 border-r border-gray-100 bg-white flex-col`}>
             <div className="p-4 border-b border-gray-100 font-bold text-gray-800 flex items-center justify-between">
@@ -266,15 +266,13 @@ export default function App() {
                 <button
                   key={r.roomId}
                   onClick={() => switchRoom(r)}
-                  className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all ${
-                    r.roomId === roomId 
-                      ? 'bg-green-50 text-green-700 font-semibold border-l-4 border-green-500 shadow-sm' 
+                  className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all ${r.roomId === roomId
+                      ? 'bg-green-50 text-green-700 font-semibold border-l-4 border-green-500 shadow-sm'
                       : 'hover:bg-gray-50 text-gray-600'
-                  }`}
+                    }`}
                 >
-                  <div className={`h-8 w-8 rounded-full flex items-center justify-center text-xs font-bold ${
-                    r.roomId === roomId ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-500'
-                  }`}>
+                  <div className={`h-8 w-8 rounded-full flex items-center justify-center text-xs font-bold ${r.roomId === roomId ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-500'
+                    }`}>
                     {r.name.charAt(0).toUpperCase()}
                   </div>
                   <div className="flex-1 text-left truncate text-sm">
@@ -285,7 +283,7 @@ export default function App() {
                   )}
                 </button>
               ))}
-              <button 
+              <button
                 onClick={() => setShowConfigPopup(true)}
                 className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-zinc-50 text-blue-500 text-sm font-medium transition-colors border border-dashed border-blue-200 mt-4"
               >
@@ -299,7 +297,7 @@ export default function App() {
           <div className="flex-1 flex flex-col relative bg-zinc-50 min-w-0">
             {/* CHAT HEADER */}
             <div className="flex items-center gap-2 md:gap-4 px-3 md:px-6 h-14 md:h-16 bg-white border-b border-gray-100 shadow-sm z-10 shrink-0">
-              <button 
+              <button
                 onClick={() => setShowRoomsSidebar(true)}
                 className="lg:hidden p-1.5 hover:bg-zinc-100 rounded-lg text-gray-600 transition-colors"
                 aria-label="Toggle Rooms Sidebar"
@@ -312,14 +310,14 @@ export default function App() {
               <div className="h-9 w-9 md:h-10 md:w-10 rounded-full bg-gradient-to-br from-green-500 to-[#075E54] flex items-center justify-center text-white font-bold shadow-md shrink-0">
                 {roomName.charAt(0).toUpperCase()}
               </div>
-              
+
               <div className="flex-1 min-w-0">
                 <div className="text-sm md:text-base font-bold text-gray-800 truncate leading-tight">
                   {roomName}
                 </div>
                 <div className="flex items-center gap-1 overflow-hidden mt-0.5">
-                  <span className="text-[8px] md:text-[10px] py-0.5 px-1 bg-zinc-100 text-zinc-500 rounded font-mono shrink-0">
-                    #{roomId.slice(0, 6)}
+                  <span className="text-[9px] md:text-[10px] py-0.5 px-1.5 bg-zinc-100 text-zinc-500 rounded-md font-mono shrink-0">
+                    ID: {roomId}
                   </span>
                   {typers.length > 0 && (
                     <span className="text-[9px] md:text-xs text-green-500 font-medium animate-pulse truncate">
@@ -331,14 +329,14 @@ export default function App() {
 
               <div className="flex items-center gap-1 md:gap-3 px-1.5 md:px-3 py-1 bg-zinc-100 sm:bg-zinc-50 rounded-full border border-zinc-200 sm:border-zinc-100">
                 <div className="hidden sm:block text-xs font-medium text-gray-600 truncate max-w-[80px]">
-                   {userName}
+                  {userName}
                 </div>
                 <div className="h-6 w-6 md:h-7 md:w-7 rounded-full bg-green-100 text-[#075E54] flex items-center justify-center text-[10px] font-bold shrink-0 border border-white">
                   {userName.charAt(0).toUpperCase()}
                 </div>
               </div>
-              
-              <button 
+
+              <button
                 onClick={() => setShowMembersSidebar(true)}
                 className="xl:hidden p-1.5 hover:bg-zinc-100 rounded-lg text-gray-600 transition-colors"
                 aria-label="Toggle Members Sidebar"
@@ -359,11 +357,11 @@ export default function App() {
                     className={`flex ${mine ? 'justify-end' : 'justify-start'} animate-fade-in`}>
                     <div
                       className={`max-w-[85%] md:max-w-[75%] p-3 md:p-4 rounded-2xl text-sm shadow-sm transition-all duration-300 ${mine
-                          ? 'bg-[#00A884] text-white rounded-tr-none'
-                          : 'bg-white text-gray-800 rounded-tl-none border border-zinc-100'
+                        ? 'bg-[#00A884] text-white rounded-tr-none'
+                        : 'bg-white text-gray-800 rounded-tl-none border border-zinc-100'
                         }`}>
                       {!mine && (
-                         <div className="text-[10px] font-bold text-green-600 mb-1">{m.sender}</div>
+                        <div className="text-[10px] font-bold text-green-600 mb-1">{m.sender}</div>
                       )}
                       <div className="break-words leading-relaxed whitespace-pre-wrap">
                         {m.text}
