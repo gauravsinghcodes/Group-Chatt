@@ -247,7 +247,7 @@ export default function App() {
 
       {/* CHAT WINDOW */}
       {!showConfigPopup && (
-        <div className="w-full max-w-6xl h-screen md:h-[90vh] bg-white rounded-none md:rounded-2xl shadow-2xl flex overflow-hidden border border-zinc-200">
+        <div className="w-full max-w-6xl h-screen h-[100dvh] md:h-[90vh] bg-white rounded-none md:rounded-2xl shadow-2xl flex overflow-hidden border border-zinc-200">
           {/* ROOMS SIDEBAR */}
           <div className={`${showRoomsSidebar ? 'flex' : 'hidden'} lg:flex absolute lg:static inset-0 z-30 w-full lg:w-64 border-r border-gray-100 bg-white flex-col`}>
             <div className="p-4 border-b border-gray-100 font-bold text-gray-800 flex items-center justify-between">
@@ -298,10 +298,11 @@ export default function App() {
           {/* MAIN CHAT AREA */}
           <div className="flex-1 flex flex-col relative bg-zinc-50 min-w-0">
             {/* CHAT HEADER */}
-            <div className="flex items-center gap-2 md:gap-4 px-3 md:px-6 py-3 md:py-4 bg-white border-b border-gray-100 shadow-sm z-10">
+            <div className="flex items-center gap-2 md:gap-4 px-3 md:px-6 py-3 bg-white border-b border-gray-100 shadow-sm z-10">
               <button 
                 onClick={() => setShowRoomsSidebar(true)}
-                className="lg:hidden p-2 hover:bg-zinc-100 rounded-lg text-gray-600"
+                className="lg:hidden p-1.5 hover:bg-zinc-100 rounded-lg text-gray-600 transition-colors"
+                aria-label="Toggle Rooms Sidebar"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -311,35 +312,38 @@ export default function App() {
               <div className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-gradient-to-br from-green-500 to-[#075E54] flex items-center justify-center text-white font-bold shadow-md shrink-0">
                 {roomName.charAt(0).toUpperCase()}
               </div>
+              
               <div className="flex-1 min-w-0">
-                <div className="text-sm md:text-base font-bold text-gray-800 truncate">
+                <div className="text-sm md:text-base font-bold text-gray-800 truncate leading-tight">
                   {roomName}
                 </div>
-                <div className="flex items-center gap-2 overflow-hidden">
-                  <span className="text-[9px] md:text-[10px] py-0.5 px-2 bg-zinc-100 text-zinc-500 rounded-full font-mono shrink-0">
-                    ID: {roomId}
+                <div className="flex items-center gap-1.5 overflow-hidden mt-0.5">
+                  <span className="text-[9px] md:text-[10px] py-0.5 px-1.5 bg-zinc-100 text-zinc-500 rounded-md font-mono shrink-0">
+                    #{roomId.slice(0, 6)}
                   </span>
                   {typers.length > 0 && (
-                    <span className="text-[10px] md:text-xs text-green-500 font-medium animate-pulse truncate">
-                      {typers.join(', ')} typing...
+                    <span className="text-[9px] md:text-xs text-green-500 font-medium animate-pulse truncate">
+                      {typers.join(', ')}...
                     </span>
                   )}
                 </div>
               </div>
-              <div className="flex items-center gap-2 md:gap-3 px-2 md:px-3 py-1 md:py-1.5 bg-zinc-50 rounded-full border border-zinc-100">
+
+              <div className="flex items-center gap-1.5 md:gap-3 px-1.5 md:px-3 py-1 bg-zinc-50 rounded-full border border-zinc-100">
                 <div className="hidden sm:block text-xs font-medium text-gray-600 truncate max-w-[80px]">
                    {userName}
                 </div>
-                <div className="h-6 w-6 rounded-full bg-green-100 text-[#075E54] flex items-center justify-center text-[10px] font-bold shrink-0">
+                <div className="h-6 w-6 rounded-full bg-green-100 text-[#075E54] flex items-center justify-center text-[10px] font-bold shrink-0 border border-white">
                   {userName.charAt(0).toUpperCase()}
                 </div>
               </div>
               
               <button 
                 onClick={() => setShowMembersSidebar(true)}
-                className="xl:hidden p-2 hover:bg-zinc-100 rounded-lg text-gray-600"
+                className="xl:hidden p-1.5 hover:bg-zinc-100 rounded-lg text-gray-600 transition-colors"
+                aria-label="Toggle Members Sidebar"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               </button>
