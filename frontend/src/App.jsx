@@ -201,7 +201,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen md:min-h-[90vh] flex items-center justify-center bg-zinc-100 md:p-4 p-0 font-inter overflow-hidden">
+    <div className="h-[100dvh] md:min-h-screen flex items-center justify-center bg-zinc-100 md:p-4 p-0 font-inter overflow-hidden">
       {showConfigPopup && (
         <div className="fixed inset-0 flex items-center justify-center z-40 bg-black/50">
           <div className="bg-white rounded-xl shadow-lg max-w-md w-full p-6">
@@ -247,7 +247,7 @@ export default function App() {
 
       {/* CHAT WINDOW */}
       {!showConfigPopup && (
-        <div className="w-full max-w-6xl h-screen h-[100dvh] md:h-[90vh] bg-white rounded-none md:rounded-2xl shadow-2xl flex overflow-hidden border border-zinc-200">
+        <div className="w-full max-w-6xl h-full md:h-[90vh] bg-white rounded-none md:rounded-2xl shadow-2xl flex overflow-hidden border border-zinc-200">
           {/* ROOMS SIDEBAR */}
           <div className={`${showRoomsSidebar ? 'flex' : 'hidden'} lg:flex absolute lg:static inset-0 z-30 w-full lg:w-64 border-r border-gray-100 bg-white flex-col`}>
             <div className="p-4 border-b border-gray-100 font-bold text-gray-800 flex items-center justify-between">
@@ -350,7 +350,7 @@ export default function App() {
             </div>
 
             {/* MESSAGE LIST */}
-            <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 custom-scrollbar">
+            <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 custom-scrollbar bg-white">
               {messages.map((m) => {
                 const mine = m.phone === phoneNumber;
                 return (
